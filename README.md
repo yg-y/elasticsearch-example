@@ -18,6 +18,14 @@ api 模块，对外暴露接口
 
 # Elasticsearch 配置
 
+- application.yml
+
+```yaml
+elasticsearch:
+  ip: 127.0.0.1
+  port: 9200
+```
+
 - ElasticSearchConfig
 
 ```java
@@ -66,20 +74,20 @@ public class ElasticSearchConfig {
 </properties>
 
 <dependencyManagement>
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
-        <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-high-level-client</artifactId>
-            <version>${version.elasticsearch}</version>
-        </dependency>
-    
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${version.alibaba.fastjson}</version>
-        </dependency>
-    </dependencies>
+<dependencies>
+    <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
+    <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>${version.elasticsearch}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${version.alibaba.fastjson}</version>
+    </dependency>
+</dependencies>
 </dependencyManagement>
 ```
 
