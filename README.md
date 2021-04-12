@@ -117,9 +117,9 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ../logs/data:/usr/share/elasticsearch/data
-      - ../logs:/usr/share/elasticsearch/logs
-      - ../logs/plugins:/usr/share/elasticsearch/plugins
+      - ./logs/data:/usr/share/elasticsearch/data
+      - ./logs:/usr/share/elasticsearch/logs
+      - ./logs/plugins:/usr/share/elasticsearch/plugins
     ports:
       - 9200:9200
     networks:
