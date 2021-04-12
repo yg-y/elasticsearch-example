@@ -19,21 +19,41 @@ public class ElasticSearchController {
     @Autowired
     IElasticSearchService iElasticSearchService;
 
+    /**
+     * 储存数据到 es 中
+     *
+     * @return
+     */
     @GetMapping("/save")
     public Object saveEsData() {
         return iElasticSearchService.saveEsData();
     }
 
+    /**
+     * 根据索引删除对应的 es 数据
+     *
+     * @return
+     */
     @GetMapping("/delete")
     public Object deleteEsData() {
         return iElasticSearchService.deleteEsData();
     }
 
+    /**
+     * 根据索引获取对应的es数据
+     *
+     * @return
+     */
     @GetMapping("/get")
     public Object getEsData() {
         return iElasticSearchService.getEsData();
     }
 
+    /**
+     * 更新 es 数据
+     *
+     * @return
+     */
     @GetMapping("/update")
     public Object updateEsData() {
         return iElasticSearchService.updateEsData();
