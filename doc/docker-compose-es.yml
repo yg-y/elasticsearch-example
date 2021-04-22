@@ -1,0 +1,41 @@
+# es.yml
+version: '3.2'
+services:
+  elasticsearch:
+    image: elasticsearch:7.8.0
+    container_name: elk-es
+    restart: always
+    environment:
+      # 开启内存锁定
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      # 指定单节点启动
+      - discovery.type=single-node
+    ulimits:
+      # 取消内存相关限制  用于开启内存锁定
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./logs/data:/usr/share/elasticsearch/data
+      - ./logs:/usr/share/elasticsearch/logs
+      - ./logs/plugins:/usr/share/elasticsearch/plugins
+    ports:
+      - 9200:9200
+    networks:
+      - young
+  kibana:
+    image: kibana:7.8.0
+    container_name: elk-kibana
+    restart: always
+    environment:
+      ELASTICSEARCH_HOSTS: http://elk-es:9200
+      I18N_LOCALE: zh-CN
+    ports:
+      - 5601:5601
+    networks:
+      - young
+
+networks:
+  young:
+    driver: bridge
