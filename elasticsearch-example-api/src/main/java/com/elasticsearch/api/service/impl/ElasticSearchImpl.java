@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.elasticsearch.api.service.IElasticSearchService;
 import com.elasticsearch.entity.UserEsEntity;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -12,7 +14,6 @@ import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.update.UpdateRequest;
-import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
@@ -39,6 +40,7 @@ public class ElasticSearchImpl implements IElasticSearchService {
     RestHighLevelClient client;
 
     private static final String ES_INDEX_USERS = "es_index_users";
+    private static final String ES_INDEX_USERS_2 = "es_index_users_2";
 
     @Override
     public Object saveEsData() {
@@ -99,7 +101,19 @@ public class ElasticSearchImpl implements IElasticSearchService {
     }
 
     @Override
-    public Object updateEsData() {
-        return null;
+    public Object bulkEsData() throws IOException {
+        BulkRequest bulkRequest = new BulkRequest();
+        for (int i = 5; i < 10; i++) {
+            UserEsEntity userEsEntity = new UserEsEntity();
+            userEsEntity.setId(i);
+            userEsEntity.setName("young" + i);
+            userEsEntity.setEmail("young.yg" + i + "@foxmail.com2");
+            UpdateRequest updateRequest = new UpdateRequest(ES_INDEX_USERS_2, "user_" + userEsEntity.getId());
+            updateRequest.doc(JSONObject.toJSONString(userEsEntity), XContentType.JSON);
+            updateRequest.upsert(XContentType.JSON);
+            bulkRequest.add(updateRequest);
+        }
+        BulkResponse bulk = client.bulk(bulkRequest, RequestOptions.DEFAULT);
+        return bulk;
     }
 }

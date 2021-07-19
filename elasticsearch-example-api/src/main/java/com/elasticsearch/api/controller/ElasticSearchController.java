@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 /**
  * @author young
  * @version 1.0
@@ -50,12 +52,12 @@ public class ElasticSearchController {
     }
 
     /**
-     * 更新 es 数据
+     * 增量或全量操作 es 数据
      *
      * @return
      */
-    @GetMapping("/update")
-    public Object updateEsData() {
-        return iElasticSearchService.updateEsData();
+    @GetMapping("/bulk")
+    public Object bulkEsData() throws IOException {
+        return iElasticSearchService.bulkEsData();
     }
 }

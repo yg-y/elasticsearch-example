@@ -1,5 +1,7 @@
 package com.elasticsearch.api.service;
 
+import java.io.IOException;
+
 /**
  * @author young
  * @version 1.0
@@ -14,5 +16,5 @@ public interface IElasticSearchService {
 
     Object getEsData();
 
-    Object updateEsData();
+    Object bulkEsData() throws IOException;
 }
