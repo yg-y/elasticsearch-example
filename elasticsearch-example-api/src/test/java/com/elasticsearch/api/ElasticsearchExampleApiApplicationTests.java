@@ -1,6 +1,7 @@
 package com.elasticsearch.api;
 
 import com.alibaba.fastjson.JSON;
+import com.elasticsearch.api.service.IElasticSearchService;
 import lombok.Data;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
@@ -61,6 +62,14 @@ class ElasticsearchExampleApiApplicationTests {
         GetRequest getRequest = new GetRequest("es_test", "2");
         GetResponse response = client.get(getRequest, RequestOptions.DEFAULT);
         System.out.println(response);
+    }
+
+    @Autowired
+    IElasticSearchService iElasticSearchService;
+
+    @Test
+    void delete() {
+        iElasticSearchService.deleteEsData();
     }
 
     @Data

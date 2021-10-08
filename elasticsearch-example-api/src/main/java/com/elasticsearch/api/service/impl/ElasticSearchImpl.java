@@ -76,7 +76,7 @@ public class ElasticSearchImpl implements IElasticSearchService {
 
     @Override
     public Object deleteEsData() {
-        DeleteRequest deleteRequest = new DeleteRequest(ES_INDEX_USERS, "3");
+        DeleteRequest deleteRequest = new DeleteRequest(ES_INDEX_USERS_2, "user_1");
         DeleteResponse delete = null;
         try {
             delete = client.delete(deleteRequest, RequestOptions.DEFAULT);
