@@ -25,6 +25,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <version.elasticsearch>7.8.0</version.elasticsearch>
         <version.alibaba.fastjson>1.2.75</version.alibaba.fastjson>
+        <version.logstash>6.6</version.logstash>
     </properties>
 
     <dependencyManagement>
@@ -40,6 +41,13 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${version.alibaba.fastjson}</version>
+            </dependency>
+
+            <!-- logback 推送日志文件到logstash -->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${version.logstash}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

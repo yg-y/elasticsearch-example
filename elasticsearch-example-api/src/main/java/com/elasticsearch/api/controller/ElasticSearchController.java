@@ -1,12 +1,14 @@
 package com.elasticsearch.api.controller;
 
 import com.elasticsearch.api.service.IElasticSearchService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 /**
  * @author young
@@ -14,6 +16,7 @@ import java.io.IOException;
  * @date 2021/4/8 11:57 上午
  * @description
  */
+@Slf4j
 @RequestMapping("/elasticsearch")
 @RestController
 public class ElasticSearchController {
@@ -59,5 +62,13 @@ public class ElasticSearchController {
     @GetMapping("/bulk")
     public Object bulkEsData() throws IOException {
         return iElasticSearchService.bulkEsData();
+    }
+
+    @GetMapping("/logs")
+    public String printLogs() {
+        log.info(this.getClass().getSimpleName() + " info : " + LocalDateTime.now().getSecond());
+        log.warn(this.getClass().getSimpleName() + " warn : " + LocalDateTime.now().getSecond());
+        log.error(this.getClass().getSimpleName() + " error : " + LocalDateTime.now().getSecond());
+        return "logs";
     }
 }

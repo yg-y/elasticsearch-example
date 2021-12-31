@@ -3,6 +3,8 @@ package com.elasticsearch.api;
 import com.alibaba.fastjson.JSON;
 import com.elasticsearch.api.service.IElasticSearchService;
 import lombok.Data;
+import org.apache.http.HttpRequest;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
