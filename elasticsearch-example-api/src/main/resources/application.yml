@@ -5,5 +5,5 @@ spring:
     name: elasticsearch-example-api
 
 elasticsearch:
-  ip: 127.0.0.1
+  ip: 192.168.20.205
   port: 9200
